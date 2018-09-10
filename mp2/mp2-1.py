@@ -91,6 +91,6 @@ class AIGraph(object):
         return
 
 if __name__ == '__main__':
-    example = AIGraph('Output.aig')
-    #example = AIGraph('ps.aig')
-    # example = AIGraph(sys.argv[1])
+    example = AIGraph(sys.argv[1])
+    example.print_list()
+    example.print_matrix()
