@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 from ai_graph import AIGraph
-from g import g
+from utils import multi_g
 
 
 if __name__ == '__main__':
@@ -9,4 +9,4 @@ if __name__ == '__main__':
     s = sys.stdin.read().replace('\n', '')
     s = s.split(' ')
     nodes = np.array(s).astype(int)
-    print(g(graph, nodes))
+    print(multi_g(graph, nodes))

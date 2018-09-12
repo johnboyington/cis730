@@ -88,3 +88,16 @@ class AIGraph(object):
             s += '\n'
         print(s)
         return
+
+    def goal_test(self, test_state):
+        if test_state == self.G:
+            return True
+        else:
+            return False
+
+    def actions(self, current_state):
+        action_list = []
+        for i, state in self.cost[current_state]:
+            if state != -1:
+                action_list.append(state)
+        return action_list
