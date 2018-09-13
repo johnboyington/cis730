@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 from ai_graph import AIGraph
-from utils import multi_g
+from code import multi_g
 
 
 if __name__ == '__main__':

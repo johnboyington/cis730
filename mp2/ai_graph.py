@@ -1,4 +1,5 @@
 import numpy as np
+import pickle
 
 
 class AIGraph(object):
@@ -89,15 +90,11 @@ class AIGraph(object):
         print(s)
         return
 
-    def goal_test(self, test_state):
-        if test_state == self.G:
-            return True
-        else:
-            return False
-
-    def actions(self, current_state):
-        action_list = []
-        for i, state in self.cost[current_state]:
-            if state != -1:
-                action_list.append(state)
-        return action_list
+    def store_table(self):
+        self.lookup_table = {}
+        for i, row in enumerate(self.cost):
+            self.lookup_table[i] = []
+            for j, c in enumerate(row):
+                if c != -1:
+                    self.lookup_table[i].append((j, c))
+        pickle.dump(self.lookup_table, open(self.filename[:-4] + '.p', 'wb'))

@@ -114,7 +114,7 @@ class Node:
                     problem.path_cost(self.path_cost, self.state,
                                       action, next_state))
         return next_node
-    
+
     def solution(self):
         """Return the sequence of actions to go from the root to this node."""
         return [node.action for node in self.path()[1:]]
