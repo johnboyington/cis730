@@ -3,14 +3,15 @@ import pickle
 
 
 class AIGraph(object):
-    '''
-    A class that stores information on an AIGraph given an input filename.
-    '''
+    '''A class that stores information on an AIGraph given an input filename.
+    Also has the ability to pickle the cost matrix for use in other classes,
+    and can print different aig formatted outputs.'''
     def __init__(self, filename):
         self.filename = filename
         self.parse_input()
 
     def parse_input(self):
+        '''Parses the input of an aig file.'''
         with open(self.filename, 'r') as F:
             lines = F.read().split('\n')
 
@@ -44,6 +45,7 @@ class AIGraph(object):
         return
 
     def parse_list(self, data):
+        '''Parses data if in the #list format'''
         for i, row in enumerate(data):
             row = row.split('-')
             for val in row:
@@ -56,6 +58,7 @@ class AIGraph(object):
         return
 
     def parse_matrix(self, data):
+        '''Parses data if in the #matrix format'''
         for i, row in enumerate(data):
             row = row.split(' ')
             for j, val in enumerate(row):
@@ -67,6 +70,7 @@ class AIGraph(object):
         return
 
     def print_list(self):
+        '''Prints data if in the list format'''
         s = ''
         for i, row in enumerate(self.cost):
             for j, val in enumerate(row):
@@ -79,6 +83,7 @@ class AIGraph(object):
         return
 
     def print_matrix(self):
+        '''Prints data if in the matrix format'''
         s = ''
         for i, row in enumerate(self.cost):
             for j, val in enumerate(row):
@@ -91,6 +96,7 @@ class AIGraph(object):
         return
 
     def store_table(self):
+        '''Pickles lookup table data'''
         self.lookup_table = {}
         for i, row in enumerate(self.cost):
             self.lookup_table[i] = []
@@ -100,4 +106,6 @@ class AIGraph(object):
         pickle.dump(self.lookup_table, open(self.filename[:-4] + '.p', 'wb'))
 
     def store_h(self):
+        '''Stores heuristic data.'''
         np.save('h.npy', self.h)
+        return

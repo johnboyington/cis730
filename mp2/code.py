@@ -1,20 +1,19 @@
 import numpy as np
 import pickle
-from search import Problem, Node, uniform_cost_search
+from search import Problem
 
 
 # ______________________________________________________________________________
-def child_node(problem, parent, action):
-    pass
-
-
 def h(n):
+    '''The hueristic function'''
     h_array = np.load('h.npy')
     return h_array[n.state]
 
 
 # ______________________________________________________________________________
 class Graph_Problem(Problem):
+    '''Like the abstract Problem class, but allows me to lookup actions using
+    the pickled cost matrices.'''
     def __init__(self, initial, goal, lookup_name):
         Problem.__init__(self, initial, goal)
         self.lookup = pickle.load(open(lookup_name[:-4] + '.p', 'rb'))
@@ -43,6 +42,7 @@ class Graph_Problem(Problem):
 
 # ______________________________________________________________________________
 def multi_g(graph, nodes):
+    '''Given a series of nodes, prints the cumulative cost to arrive at each node.'''
     sol = np.zeros(len(nodes))
     for i, node in enumerate(nodes):
         if i == 0:
