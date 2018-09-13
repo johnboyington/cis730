@@ -98,3 +98,6 @@ class AIGraph(object):
                 if c != -1:
                     self.lookup_table[i].append((j, c))
         pickle.dump(self.lookup_table, open(self.filename[:-4] + '.p', 'wb'))
+
+    def store_h(self):
+        np.save('h.npy', self.h)

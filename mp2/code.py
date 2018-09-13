@@ -8,6 +8,10 @@ def child_node(problem, parent, action):
     pass
 
 
+def h(n):
+    h_array = np.load('h.npy')
+    return h_array[n.state]
+
 
 # ______________________________________________________________________________
 class Graph_Problem(Problem):
