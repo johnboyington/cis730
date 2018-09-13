@@ -2,7 +2,7 @@ import numpy as np
 import sys
 from ai_graph import AIGraph
 from code import Graph_Problem, multi_g, h
-from search import uniform_cost_search, greedy_best_first_graph_search
+from search import uniform_cost_search, greedy_best_first_graph_search, astar_search
 
 
 flag = sys.argv[1]
@@ -16,6 +16,10 @@ if flag == '-bnb':
     sol_node = uniform_cost_search(problem)
 elif flag == '-gbfs':
     sol_node = greedy_best_first_graph_search(problem, h)
+elif flag == '-a':
+    sol_node = astar_search(problem, h)
+else:
+    assert 'Not a valid flag.'
 
 
 sol_nodes = np.empty(len(sol_node.path()))
