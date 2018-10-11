@@ -1,12 +1,17 @@
 import numpy as np
 from numpy.random import rand, randint
+import os
+import sys
 import gym
 
 
 def play_game(agent):
     score = 0
-    extra_frames = 0
+    save_stdout = sys.stdout
+    sys.stdout = open('trash', 'w')
     env = gym.make('CartPole-v0')
+    sys.stdout = save_stdout
+    os.remove('trash')
     observation, reward, done, info = env.reset()
     observation = [0, 0, 0, 0]
     for i in range(1000):
@@ -14,10 +19,8 @@ def play_game(agent):
         score += reward
         observation, reward, done, info = env.step(agent.select_action(observation))
         if done:
-            extra_frames += 1
-            if extra_frames == 5:
-                env.close()
-                break
+            env.close()
+            break
     return score
 
 
@@ -28,7 +31,10 @@ class Random_Walk_Agent(object):
 
     def select_action(self, obs):
         obs = np.array(obs)
-        s = np.sum(self.w * obs)
+        obs_array = np.zeros(len(obs)*2)
+        obs_array[:len(obs)] = obs
+        obs_array[len(obs):] = obs ** 2
+        s = np.sum(self.w * obs_array)
         if s >= 0:
             action = 0
         else:
@@ -48,8 +54,8 @@ class Random_Walk_Agent(object):
         return self.best_score
 
 
-def cycle(agent, N=10):
-    s = 0    
+def cycle(agent, N=3):
+    s = 0
     for _ in range(N):
         s += play_game(agent)
     print(s / N)
@@ -59,39 +65,42 @@ def cycle(agent, N=10):
 def random_walk(agent):
     # random walk
     w0 = agent.get_weights()
-    i_rand = randint(0, 3)
+    i_rand = randint(0, len(w0))
     wnew = w0
-    new_weight = (rand() * 2) - 1
-    print(new_weight, i_rand)
+    step = 0.3
+    new_weight = (rand() * step) - (step * 0.5)
     wnew[i_rand] += new_weight
-    print(wnew)
     agent.update_weights(wnew)
-    s = cycle(agent, 3)
+    s = cycle(agent)
     if s < agent.get_score():
         agent.update_weights(w0)
-        print('rejected')
     else:
-        print('kept')
+        agent.update_score(s)
+        print(wnew)
+    return
 
 
-def run():
+def learn(w_i):
     # create agent with initial weights
-    w_i = np.array([0, 0, 0, 0])
     walker = Random_Walk_Agent(w_i)
 
     # find average score
-    s = cycle(walker, 3)
+    s = cycle(walker)
     walker.update_score(s)
 
     for _ in range(10):
         random_walk(walker)
 
-    
+    # return final weights
+    return walker.get_weights()
 
 
-run()
-
-
-
-
-
+if __name__ == '__main__':
+    try:
+        w_i = np.load('weights.npy')
+        print('Loaded Weights')
+    except:
+        w_i = np.zeros(8)
+        print('New Weights')
+    w_f = learn(w_i)
+    np.save('weights.npy', w_f)
