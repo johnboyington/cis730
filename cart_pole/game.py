@@ -54,7 +54,7 @@ class Random_Walk_Agent(object):
         return self.best_score
 
 
-def cycle(agent, N=3):
+def cycle(agent, N=5):
     s = 0
     for _ in range(N):
         s += play_game(agent)
@@ -67,7 +67,7 @@ def random_walk(agent):
     w0 = agent.get_weights()
     i_rand = randint(0, len(w0))
     wnew = w0
-    step = 0.3
+    step = 0.1
     new_weight = (rand() * step) - (step * 0.5)
     wnew[i_rand] += new_weight
     agent.update_weights(wnew)
