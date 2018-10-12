@@ -64,12 +64,12 @@ def cycle(agent, N=5):
 
 def select_random_direction(w0):
     i_rand = randint(0, len(w0))
-    wnew = w0
-    step = 0.5
+    wnew = w0.copy()
+    step = 0.2
     new_weight = (rand() * step) - (step * 0.5)
     wnew[i_rand] += new_weight
     return wnew
-    
+
 
 def random_walk(agent):
     # random walk
@@ -82,7 +82,7 @@ def random_walk(agent):
     else:
         agent.update_score(s)
         print(wnew)
-    return
+    return agent
 
 
 def learn(w_i):
@@ -93,11 +93,11 @@ def learn(w_i):
     s = cycle(walker)
     walker.update_score(s)
 
-    for _ in range(20):
-        random_walk(walker)
+    for _ in range(15):
+        walker = random_walk(walker)
 
     # return final weights
-    return walker.get_weights()
+    return walker.get_weights(), walker.get_score()
 
 
 if __name__ == '__main__':
@@ -108,6 +108,7 @@ if __name__ == '__main__':
     except:
         w_i = np.zeros(8)
         print('New Weights')
-    w_f = learn(w_i)
+    w_f, s_f = learn(w_i)
+    print('s_f', s_f)
     print('w_f', w_f)
     np.save('weights.npy', w_f)
