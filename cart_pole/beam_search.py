@@ -69,6 +69,9 @@ def h(node):
 
 
 def beam_search(start_node, closed_list=[], open_list=[]):
+    # remove start_node from queue
+    closed_list.append(start_node)
+
     # expand start node
     expanded = expand(start_node)
 
@@ -76,7 +79,7 @@ def beam_search(start_node, closed_list=[], open_list=[]):
     for n_e in expanded:
         in_closed = False
         for n_c in closed_list:
-            if n_c.w == n_e.w:
+            if np.all(n_c.w == n_e.w):
                 in_closed = True
         if not in_closed:
             open_list.append(n_e)
