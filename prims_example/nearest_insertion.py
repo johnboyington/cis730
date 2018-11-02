@@ -36,13 +36,14 @@ def next_minimum_distance(A, nodes_remaining, T):
 
 def insert_next_node(A, n, i, T):
     """Inserts the new neighbor into the tour."""
-    if i == 0:
-        T.insert(i+1, n)
-    else:
-        if A[T[i+1], n] > A[T[i-1], n]:
-            T.insert(i, n)
-        else:
-            T.insert(i+1, n)
+    print(n+1)
+    min_cost = np.max(A) * 2
+    for t_i in range(len(T[1:])):
+        c_next = A[n, T[t_i + 1]] + A[T[t_i], n] - A[T[t_i + 1], T[t_i]]
+        if c_next < min_cost:
+            min_cost = c_next
+            min_cost_i = t_i + 1
+    T.insert(min_cost_i, n)
     return T
 
 
@@ -50,12 +51,12 @@ def nearest_insertion_heuristic(A):
     """Function that when given an adjacency matrix (np.array), returns a
     feasible tour (list) using the nearest insertion algorithm."""
     T, nodes_remaining = initialize_tour(A)
-    print('', T)
+    print('', list(np.array(T) + 1))
     print('Total Path Cost:  ', cost(A, T), '\n')
     while nodes_remaining:
         neighbor, i = next_minimum_distance(A, nodes_remaining, T)
         T = insert_next_node(A, neighbor, i, T)
-        print('', T)
+        print('', list(np.array(T) + 1))
         print('Total Path Cost:  ', cost(A, T), '\n')
     return T
 
