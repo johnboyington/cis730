@@ -15,17 +15,18 @@ def cost(A, T):
     tour_cost = 0
     for i in range(len(T[:-1])):
         tour_cost += A[T[i], T[i+1]]
+    return tour_cost
 
 
 def next_minimum_distance(A, nodes_remaining, T):
     """Returns the closest neighbor to the tour."""
-    connection = [T[0]] * len(T)
-    costs = [float('inf')] * len(T)
-    for node in nodes_remaining:
+    connection = [T[0]] * len(nodes_remaining)
+    costs = [float('inf')] * len(nodes_remaining)
+    for n_i, node in enumerate(nodes_remaining):
         for t in T:
-            if A[node, t] < costs[nodes_remaining[node]]:
-                costs[node] = A[node, t]
-                connection[node] = t
+            if A[node, t] < costs[n_i]:
+                costs[n_i] = A[node, t]
+                connection[n_i] = t
     min_cost = min(costs)
     min_cost_index = costs.index(min_cost)
     return nodes_remaining[min_cost_index], connection[min_cost_index]
@@ -33,11 +34,13 @@ def next_minimum_distance(A, nodes_remaining, T):
 
 def insert_next_node(A, n, i, T):
     """Inserts the new neighbor into the tour."""
-    # insert to left
-    if A[T[i+1], n] > A[T[i-1], n]:
-        T.insert(i, n)
-    else:
+    if i == 0:
         T.insert(i+1, n)
+    else:
+        if A[T[i+1], n] > A[T[i-1], n]:
+            T.insert(i, n)
+        else:
+            T.insert(i+1, n)
     return T
 
 
