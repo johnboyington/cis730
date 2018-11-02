@@ -23,13 +23,15 @@ def next_minimum_distance(A, nodes_remaining, T):
     connection = [T[0]] * len(nodes_remaining)
     costs = [float('inf')] * len(nodes_remaining)
     for n_i, node in enumerate(nodes_remaining):
-        for t in T:
+        for t_i, t in enumerate(T):
             if A[node, t] < costs[n_i]:
                 costs[n_i] = A[node, t]
                 connection[n_i] = t
     min_cost = min(costs)
     min_cost_index = costs.index(min_cost)
-    return nodes_remaining[min_cost_index], connection[min_cost_index]
+    T_i = T.index(connection[min_cost_index])
+    node = nodes_remaining.pop(min_cost_index)
+    return node, T_i
 
 
 def insert_next_node(A, n, i, T):
@@ -48,11 +50,13 @@ def nearest_insertion_heuristic(A):
     """Function that when given an adjacency matrix (np.array), returns a
     feasible tour (list) using the nearest insertion algorithm."""
     T, nodes_remaining = initialize_tour(A)
+    print('', T)
+    print('Total Path Cost:  ', cost(A, T), '\n')
     while nodes_remaining:
         neighbor, i = next_minimum_distance(A, nodes_remaining, T)
         T = insert_next_node(A, neighbor, i, T)
-        print(T)
-        print(cost(A, T), '\n')
+        print('', T)
+        print('Total Path Cost:  ', cost(A, T), '\n')
     return T
 
 
