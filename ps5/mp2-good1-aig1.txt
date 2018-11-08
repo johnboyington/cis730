@@ -1,0 +1,98 @@
+| CIS 730 Introduction to Artificial Intelligence
+| Kansas State University
+| http://www.kddresearch.org/Courses/CIS730
+|
+| Machine Problem 2 of 4
+| Sample Input
+| Case 1 of 5: GOOD
+|
+| Example from /Artificial Intelligence: A Modern Approach/
+| 3e (c) 2010 S. Russell and P. Norvig
+| Adapted Fri 07 Sep 2012 by William H. Hsu
+| Based on an example from 1e (c) 1995 - converted 2001
+| Also appears in 2e (c) 2003
+|
+| Arad              0
+| Bucharest         1
+| Craiova           2
+| Dobreta           3
+| Eforie            4
+| Fagaras           5
+| Giurgiu           6
+| Hirsova           7
+| Iasi              8
+| Lugoj             9
+| Mehadia           10
+| Neamt             11
+| Oradea            12
+| Pitesti           13
+| Rimnicu Vilcea    14
+| Sibiu             15
+| Timisoara         16
+| Urziceni          17
+| Vaslui            18
+| Zerind            19
+20
+|
+| Start node: Arad
+0 
+| Goal node: Bucharest
+1
+| Adjacency matrix with costs (km)
+*   *       *     *     *   *     *     *     *  *   *     *    *    *    *          140 118     *     *    75
+*   *       *     *     *   211   90    *     *  *   *     *    *    101  *          *   *       85    *    *
+*   *       *     120   *   *     *     *     *  *   *     *    *    138  146        *   *       *     *    *
+*   *       120   *     *   *     *     *     *  *   75    *    *    *    *          *   *       *     *    *
+*   *       *     *     *   *     *     86    *  *   *     *    *    *    *          *   *       *     *    *
+*   211     *     *     *   *     *     *     *  *   *     *    *    *    *          99  *       *     *    *
+*   90      *     *     *   *     *     *     *  *   *     *    *    *    *          *   *       *     *    *
+*   *       *     *     86  *     *     *     *  *   *     *    *    *    *          *   *       98    *    *
+*   *       *     *     *   *     *     *     *  *   *     87   *    *    *          *   *       *     92   *
+*   *       *     *     *   *     *     *     *  *   70    *    *    *    *          *   111     *     *    *
+*   *       *     75    *   *     *     *     *  70  *     *    *    *    *          *   *       *     *    *
+*   *       *     *     *   *     *     *     87 *   *     *    *    *    *          *   *       *     *    *
+*   *       *     *     *   *     *     *     *  *   *     *    *    *    *          151 *       *     *    71
+*   101     138   *     *   *     *     *     *  *   *     *    *    *    97         *   *       *     *    *
+*   *       146   *     *   *     *     *     *  *   *     *    *    97   *          80  *       *     *    *
+140 *       *     *     *   99    *     *     *  *   *     *    151  *    80         *   *       *     *    *
+118 *       *     *     *   *     *     *     *  111 *     *    *    *    *          *   *       *     *    *
+*   85      *     *     *   *     *     98    *  *   *     *    *    *    *          *   *       *     142  *
+*   *       *     *     *   *     *     *     92 *   *     *    *    *    *          *   *       142   *    *
+75  *       *     *     *   *     *     *     *  *   *     *    71   *    *          *   *       *     *    *
+| Euclidean distance metric heuristic (km)
+366
+0
+160
+242
+161
+178
+77
+151
+226
+244
+241
+234
+380
+98
+193
+253
+329
+80
+199
+374
+| 1(a) Final answer returned by DFS: 
+|      0, 15, 5, 1 (print expansion of these nodes)
+| 1(b) Final answer returned by BFS: 
+|      0, 15, 5, 1 (many more nodes expanded)
+| 2(a) Final answer returned by UC-B&B: 
+|      0, 15, 14, 13, 1 (but you won't know it's optimal immediately...)
+| 2(b) Final answer returned by A* with Euclidean distance metric heuristic: 
+|      0, 15, 14, 13, 1
+| EC1  Final answer returned by hill-climbing:
+|      0, 15, 5, 1 (same nodes expanded as for DFS, but look at h)
+| EC2  Final answer returned by beam search with beam width 1:
+|      Same as for hill-climbing (exercise).
+|      Final answer returned by beam search with beam width 2:
+|      Exercise.
+|
+| Consult R&N to see the step-by-step expansions.

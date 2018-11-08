@@ -1,0 +1,32 @@
+| CIS 730 Introduction to Artificial Intelligence
+| Kansas State University
+| http://www.kddresearch.org/Courses/CIS730
+|
+| Machine Problem 2 of 4
+| Case 4 of 5: BAD
+|
+| Questions:
+| 1. Is this heuristic admissible?  If not, why not?
+| 2. Is it monotonic?  If not, why not?
+| 3. Are all admissible heuristics monotonic?
+| 4. Why is this example "bad"?
+|
+6
+|
+0
+|
+5
+|
+* 1 1 * * *
+1 * * 2 1 *
+2 * * 2 * *
+* 1 1 * * 5
+* 1 * * * *
+* * * * * *
+|
+5
+2
+2
+3
+1
+0
