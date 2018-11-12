@@ -23,7 +23,7 @@ for i, node in enumerate(sol_node.path()):
 path_cost = multi_g(graph, sol_nodes.astype(int))
 
 # output solution data as string
-s = ''
+s = '\n'
 for i in range(len(path_cost)):
     if i < len(path_cost) - 1:
         s += '{} - [{}] -> '.format(int(sol_nodes[i]), int(path_cost[i+1] - path_cost[i]))
