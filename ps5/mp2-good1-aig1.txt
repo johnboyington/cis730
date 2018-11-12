@@ -35,9 +35,14 @@
 20
 |
 | Start node: Arad
-0 
+0 S
 | Goal node: Bucharest
+1 G
+| Heuristics Given
 1
+| Kind
+#matrix
+|
 | Adjacency matrix with costs (km)
 *   *       *     *     *   *     *     *     *  *   *     *    *    *    *          140 118     *     *    75
 *   *       *     *     *   211   90    *     *  *   *     *    *    101  *          *   *       85    *    *

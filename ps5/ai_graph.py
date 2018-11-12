@@ -60,7 +60,7 @@ class AIGraph(object):
     def parse_matrix(self, data):
         '''Parses data if in the #matrix format'''
         for i, row in enumerate(data):
-            row = row.split(' ')
+            row = row.split()
             for j, val in enumerate(row):
                 if val == '*':
                     pass
