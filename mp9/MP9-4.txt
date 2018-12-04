@@ -1,0 +1,36 @@
+| ECJ
+| An evolutionary computation system (version 26)
+| By Sean Luke
+| Contributors: L. Panait, G. Balan, S. Paus, Z. Skolicki, R. Kicinger,
+|               E. Popovici, K. Sullivan, J. Harrison, J. Bassett, R. Hubley,
+|               A. Desai, A. Chircop, J. Compton, W. Haddon, S. Donnelly,
+|               B. Jamil, J. Zelibor, E. Kangas, F. Abidi, H. Mooers,
+|               J. O'Beirne, L. Manzoni, K. Talukder, S. McKay, J. McDermott
+|               J. Zou, A. Rutherford, D. Freelan, E. Wei, E. Scott
+| URL: http://cs.gmu.edu/~eclab/projects/ecj/
+| Mail: ecj-help@cs.gmu.edu
+|       (better: join ECJ-INTEREST at URL above)
+| Date: July 1, 2017
+| Current Java: 1.8.0_191 / OpenJDK 64-Bit Server VM-25.191-b12
+| Required Minimum Java: 1.5
+
+
+Threads:  breed/1 eval/1
+Seed: 2059479409 
+Job: 0
+Setting up
+Processing GP Types
+Processing GP Node Constraints
+Processing GP Function Sets
+Processing GP Tree Constraints
+Initializing Generation 0
+Generation 1	Evaluations So Far 1024
+Generation 2	Evaluations So Far 2048
+Generation 3	Evaluations So Far 3072
+Generation 4	Evaluations So Far 4096
+Generation 5	Evaluations So Far 5120
+Generation 6	Evaluations So Far 6144
+Generation 7	Evaluations So Far 7168
+Generation 8	Evaluations So Far 8192
+Individual 553 of subpopulation 0 has an ideal fitness.
+Total Evaluations 9216
