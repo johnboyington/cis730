@@ -71,7 +71,7 @@
 \LARGE{CIS 730: Principles of Artificial Intelligence}
  
 \large
-Machine Problem \#9
+Machine Problem \#10
  
 Solutions by: John Boyington
 \newline
@@ -134,7 +134,7 @@ The this screenshot is from training the robot control with the ARFF data:
 \textbf{Problem 4:}
 \bigbreak
 
-Located in {\tt MP9-4.zip} is the java files used in the ECJ tutorial4 and below is the output from running the tutorial:
+Located in {\tt MP10-4.zip} is the java files used in the ECJ tutorial4 and below is the output from running the tutorial:
 
 \begin{verbatim}
 | ECJ
@@ -185,7 +185,7 @@ Total Evaluations 9216
 
 
 I would have the signals from the sensors and motor control log output into a text file at a given time step (\~ .2s is probably good).
-I would then use a file similar to my {\tt convert\_to\_arff.py} from problem 1 which would preprocess the data for use in something like WEKA.
+I would then use a file similar to my {\tt convert\_to\_arff.py} from problem 1 in hw9 which would preprocess the data for use in something like WEKA.
 This would produce a symbolic regressor, as the motor control takes the form of a class, not a numerical value.
 The documentation mentions that the drive motors operate at a constant speed, so this is why it is classification (L or R motor Forward or Backward).
 The ROS on the turtlebot would differ in the fact that there are different sensors than in the data we have above.
