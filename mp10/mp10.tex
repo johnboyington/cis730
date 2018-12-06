@@ -85,8 +85,12 @@ Solutions by: John Boyington
 \textbf{Problem 1:}
 \bigbreak
 
-I created a file named {\tt convert\_to\_arff.py} to convert the data that is located in the file {\tt MP9-1.arff}.
-Both are located in this repository.
+Object tracking is the task of recognizing an object and then being able to track the movement of that object within the robot's vision.
+It is similar to the principle of object permanence in humans, where we learn that even though an object left sight for a moment, it still exists.
+Keeping relative position under movement means that the machine is able to know where it is in space as it moves.
+This challenge arises from the idea that when your velocity changes, the relative positions/velocities of other objects seem to change as well.
+To solve this issue, the machine needs to have access to both its visual input stream, as well as some sensor that can tell its acceleration, velocity, etc.
+This will allow it to correct the images that it is seeing mathematically and maintain knowledge of were it is.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,25 +101,7 @@ Both are located in this repository.
 \bigbreak
 
 
-Below is the results from training the MLP in WEKA.
-\begin{Verbatim}[fontsize=\small]
-=== Detailed Accuracy By Class ===
 
-                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
-                 0.910    0.033    0.950      0.910    0.930      0.884    0.974     0.969     Move-Forward
-                 0.918    0.003    0.947      0.918    0.932      0.928    0.988     0.923     Slight-Left-Turn
-                 0.982    0.045    0.932      0.982    0.957      0.929    0.984     0.976     Sharp-Right-Turn
-                 0.913    0.013    0.925      0.913    0.919      0.905    0.985     0.928     Slight-Right-Turn
-Weighted Avg.    0.939    0.033    0.939      0.939    0.938      0.907    0.980     0.963     
-
-=== Confusion Matrix ===
-
-    a    b    c    d   <-- classified as
- 2007   10  132   56 |    a = Move-Forward
-   14  301   13    0 |    b = Slight-Left-Turn
-   30    2 2060    5 |    c = Sharp-Right-Turn
-   62    5    5  754 |    d = Slight-Right-Turn
-\end{Verbatim}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
